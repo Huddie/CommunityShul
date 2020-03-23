@@ -1,0 +1,38 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+div.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+div.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+div.column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  align-content: space-between;
+  background-color: aliceblue;
+}
+
+div.top-pad {
+  padding-top: 20px;
+}
