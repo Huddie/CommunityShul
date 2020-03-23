@@ -41,10 +41,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   res.locals.connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    database : 'communityshul',
-    password : '********'
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USERNAME,
+    database : 'communityshiur',
+    password : process.env.DB_PASSWORD
   });
   res.locals.connection.connect();
   next();
