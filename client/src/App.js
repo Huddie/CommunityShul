@@ -10,7 +10,7 @@ function App() {
   const  [shiurim, setShiurim ] = useState([])
 
   async function fetchData() {
-    const res = await fetch('https://x.communityshiur.com/api/shiurim', {
+    const res = await fetch('https://www.communityshiur.com/api/shiurim', {
                   method: 'GET',
                   headers: {
                     'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ function App() {
   }
 
   async function postShiur(shiur) {
-    const res = await fetch('https://x.communityshiur.com/api/add', {
+    const res = await fetch('https://www.communityshiur.com/api/add', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'

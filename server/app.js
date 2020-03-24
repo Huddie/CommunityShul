@@ -43,8 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressSanitizer());
 app.use(function(req, res, next) {
   res.locals.connection = mysql.createConnection({
-    host     : process.env.DB_HOST,
-    user     : process.env.DB_USERNAME,
+    host     : 'localhost',
+    user     : 'ehud',
     database : 'communityshiur',
     password : process.env.DB_PASSWORD
   });
