@@ -10,7 +10,7 @@ function App() {
   const  [shiurim, setShiurim ] = useState([])
 
   async function fetchData() {
-    const res = await fetch('http://localhost:4000/shiurim', {
+    const res = await fetch('http://www.communityshiur.com:4000/shiurim', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ function App() {
   }
 
   async function postShiur(shiur) {
-    const res = await fetch('http://localhost:4000/add', {
+    const res = await fetch('http://www.communityshiur.com:4000/add', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'

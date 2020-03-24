@@ -11,7 +11,8 @@ var index = require('./routes/index');
 var shiurim = require('./routes/shiurim');
 var add = require('./routes/add');
 var cors = require('cors')
-var mysql      = require('mysql');
+var mysql = require('mysql');
+var expressSanitizer = require('express-sanitizer');
 var app = express();
 app.set('trust proxy', 1) // trust first proxy
 app.use(cors())
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSanitizer());
 app.use(function(req, res, next) {
   res.locals.connection = mysql.createConnection({
     host     : process.env.DB_HOST,
