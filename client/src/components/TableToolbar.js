@@ -40,14 +40,21 @@ const TableToolbar = props => {
     preGlobalFilteredRows,
     setGlobalFilter,
     globalFilter,
+    isAdmin,
   } = props
+
+
+  var AddShiurDialogOption = isAdmin 
+  ? <AddShiurDialog addShiurHandler={addShiurHandler} /> 
+  : <div></div>
+  
   return (
     <Toolbar
       className={clsx(classes.root, {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <AddShiurDialog addShiurHandler={addShiurHandler} />
+      {AddShiurDialogOption}
       {numSelected > 0 ? (
         <Typography
           className={classes.title}
@@ -86,6 +93,7 @@ TableToolbar.propTypes = {
   setGlobalFilter: PropTypes.func.isRequired,
   preGlobalFilteredRows: PropTypes.array.isRequired,
   globalFilter: PropTypes.string.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 }
 
 export default TableToolbar

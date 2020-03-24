@@ -116,7 +116,7 @@ const AddShiurDialog = props => {
           />
           <TextField
             margin="dense"
-            label="Sources"
+            label="Sources Link"
             type="text"
             fullWidth
             value={shiur.source}
@@ -149,7 +149,21 @@ const AddShiurDialog = props => {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleAdd} color="primary">
+          <Button 
+          onClick={handleAdd} 
+          color="primary"
+          disabled={
+              (shiur.date === undefined 
+              || shiur.title === undefined 
+              || shiur.lecturer === undefined 
+              || shiur.institution === undefined 
+              || shiur.link === undefined
+              || shiur.title == ''
+              || shiur.lecturer == '' 
+              || shiur.institution == '' 
+              || shiur.link == '')
+            }
+          >
             Add
           </Button>
         </DialogActions>

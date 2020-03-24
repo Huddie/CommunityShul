@@ -26,7 +26,6 @@ app.use(cookieSession({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 var logger1 = function(req, res, next) {
   console.log("GOT REQUEST !");
   next(); // Passing the request to the next handler in the stack.
@@ -76,5 +75,5 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 var server = http.createServer(app).listen(4000, function() {
-  console.log('Https App started');
+  console.log('And were off...');
 });

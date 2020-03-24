@@ -8,7 +8,7 @@ router.post('/', function(req, res, next) {
         var query = `insert into shiurim (title, link, sources, date, lecturer, institution) VALUES ('${req.sanitize(req.body.title)}', '${req.sanitize(req.body.link)}', '${req.sanitize(req.body.sources)}', '${req.sanitize(req.body.date)}', '${req.sanitize(req.body.lecturer)}', '${req.sanitize(req.body.institution)}')`
         res.locals.connection.query(query, function (error, results, fields) {
             if(error) res.status(400).send('Bad Request');
-            res.send(JSON.stringify(results));
+            res.send("Good Stuff");
         });
     }
 });

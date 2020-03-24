@@ -14,6 +14,7 @@ import TableRow from '@material-ui/core/TableRow'
 import TableSortLabel from '@material-ui/core/TableSortLabel'
 import TableToolbar from './TableToolbar'
 import dateFormat from 'dateformat'
+import moment from 'moment';
 
 import {
   useGlobalFilter,
@@ -197,6 +198,7 @@ const EnhancedTable = ({
         preGlobalFilteredRows={preGlobalFilteredRows}
         setGlobalFilter={setGlobalFilter}
         globalFilter={globalFilter}
+        isAdmin={(process.env.NODE_ENV === 'admin')}
       />
       <MaUTable {...getTableProps()}>
         <TableHead>
@@ -231,7 +233,10 @@ const EnhancedTable = ({
                     <TableCell {...cell.getCellProps()}>
                       {
                           (cell.column.id === 'date'
-                        ? dateFormat(cell.value, "dddd, mmmm dS, yyyy, h:MM:ss TT")
+
+                        ? moment(moment.utc((new Date((new Date(cell.value).toUTCString())).toLocaleString()))).local().format('M/DD/YYYY HH:mm:ss A')
+                        : cell.column.id === 'link' || cell.column.id === 'sources' && cell.value != '' && cell.value !== undefined
+                        ? <a href={cell.value}>Click here</a>
                         : cell.render('Cell'))
                       }
                     </TableCell>
