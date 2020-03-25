@@ -198,7 +198,7 @@ const EnhancedTable = ({
         preGlobalFilteredRows={preGlobalFilteredRows}
         setGlobalFilter={setGlobalFilter}
         globalFilter={globalFilter}
-        isAdmin={(process.env.NODE_ENV === 'admin')}
+        isAdmin={true}
       />
       <MaUTable {...getTableProps()}>
         <TableHead>

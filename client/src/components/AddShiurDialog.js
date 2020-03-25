@@ -65,6 +65,14 @@ const AddShiurDialog = props => {
     setShiur({ ...shiur, [name]: value })
   }
 
+  function ValidURL(str) {
+    var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if(!regex .test(str)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   return (
     <div>
@@ -87,6 +95,7 @@ const AddShiurDialog = props => {
             label="Title"
             type="text"
             fullWidth
+            required
             value={shiur.title}
             onChange={handleChange('title')}
           />          
@@ -95,6 +104,7 @@ const AddShiurDialog = props => {
             label="Speaker"
             type="text"
             fullWidth
+            required
             value={shiur.lecturer}
             onChange={handleChange('lecturer')}
           />
@@ -103,6 +113,7 @@ const AddShiurDialog = props => {
             label="Institution"
             type="text"
             fullWidth
+            required
             value={shiur.institution}
             onChange={handleChange('institution')}
           />
@@ -110,7 +121,9 @@ const AddShiurDialog = props => {
             margin="dense"
             label="Link"
             type="text"
+            placeholder="http(s)://www....."
             fullWidth
+            required
             value={shiur.link}
             onChange={handleChange('link')}
           />
@@ -118,6 +131,7 @@ const AddShiurDialog = props => {
             margin="dense"
             label="Sources Link"
             type="text"
+            placeholder="http(s)://www....."
             fullWidth
             value={shiur.source}
             onChange={handleChange('source')}
@@ -127,6 +141,7 @@ const AddShiurDialog = props => {
               label="Date & Time"
               disablePast
               showTodayButton
+              required
               value={shiur.date} 
               onChange = {(date) =>
                 setShiur({ ...shiur, ['date']: date })
@@ -161,7 +176,9 @@ const AddShiurDialog = props => {
               || shiur.title == ''
               || shiur.lecturer == '' 
               || shiur.institution == '' 
-              || shiur.link == '')
+              || shiur.link == ''
+              || !ValidURL(shiur.link)
+              || (shiur.source != '' && !ValidURL(shiur.source)))
             }
           >
             Add

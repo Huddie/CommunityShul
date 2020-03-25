@@ -23,7 +23,7 @@ function App() {
     .catch(err => setErrors(err));
   }
   async function postShiur(shiur) {
-    const res = await fetch('https://www.communityshiur.com/api/add', {
+    const res = await fetch('https://www.admin.communityshiur.com/api/add', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'
