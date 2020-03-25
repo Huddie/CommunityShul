@@ -28,9 +28,9 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start --production",
-    "build-public": "react-scripts build --env=public",
-    "build-admin": "react-scripts build --env=admin",
+    "start": "react-scripts start",
+    "build-public": "react-scripts build",
+    "build-admin": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

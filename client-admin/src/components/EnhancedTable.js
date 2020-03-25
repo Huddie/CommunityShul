@@ -214,7 +214,6 @@ const EnhancedTable = ({
         preGlobalFilteredRows={preGlobalFilteredRows}
         setGlobalFilter={setGlobalFilter}
         globalFilter={globalFilter}
-        isAdmin={true}
       />
       <MaUTable {...getTableProps()}>
         <TableHead>
