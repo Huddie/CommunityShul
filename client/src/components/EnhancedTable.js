@@ -188,6 +188,22 @@ const EnhancedTable = ({
     updateMyData(shiur)
   }
 
+  function ValidURL(str) {
+    var regex = /(http(s)?):\/\/([(www\.)?a-zA-Z0-9@:%._\+~#=-]{2,256}\.[a-z]{2,6}|(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\b([-a-zA-Z0-9@:%_\+~#?&//=]*)/;
+    if(!regex .test(str)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function FixURLIfNecessary(str) {
+    if (ValidURL(str)) return str;
+    var new_str = "https://" + str;
+    if (ValidURL(new_str)) return new_str;
+    return str;
+  }
+
   // Render the UI for your table
   return (
     <TableContainer>
@@ -236,7 +252,7 @@ const EnhancedTable = ({
 
                         ? moment(moment.utc((new Date((new Date(cell.value).toUTCString())).toLocaleString()))).local().format('M/DD/YYYY HH:mm:ss A')
                         : cell.column.id === 'link' || cell.column.id === 'sources' && cell.value != '' && cell.value !== undefined
-                        ? <a href={cell.value}>Click here</a>
+                        ? <a href={FixURLIfNecessary(cell.value)}>Click here</a>
                         : cell.render('Cell'))
                       }
                     </TableCell>
