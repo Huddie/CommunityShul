@@ -23,7 +23,7 @@ function App() {
     .catch(err => setErrors(err));
   }
   async function postShiur(shiur) {
-    const res = await fetch('https://www.admin.communityshiur.com/api/add', {
+    const res = await fetch('https://admin.communityshiur.com/api/add', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'
@@ -76,6 +76,22 @@ function App() {
 
   const [skipPageReset, setSkipPageReset] = React.useState(false)
 
+  function ValidURL(str) {
+    var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if(!regex .test(str)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function FixURLIfNecessary(str) {
+    if (ValidURL(str)) return str;
+    var new_str = "https://" + str;
+    if (ValidURL(new_str)) return new_str;
+    return str;
+  }
+
   const updateMyData = shiur => {
 
 
@@ -92,13 +108,14 @@ function App() {
 
     }
 
+
     postShiur({
       date: shiur.date.toISOString().slice(0, 19).replace('T', ' '),
       title: shiur.title,
       lecturer: shiur.lecturer,
       institution: shiur.institution,
-      link: shiur.link,
-      sources: shiur.source,
+      link: FixURLIfNecessary(shiur.link),
+      sources: shiur.source == '' ? shiur.source : FixURLIfNecessary(shiur.source),
     })
   }
 

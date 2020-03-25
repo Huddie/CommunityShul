@@ -74,6 +74,13 @@ const AddShiurDialog = props => {
     }
   }
 
+  function ValidWithFix(str) {
+    if (ValidURL(str)) return true;
+    var new_str = "https://" + str;
+    if (ValidURL(new_str)) return true;
+    return false;
+  }
+
   return (
     <div>
       <Tooltip title="Add">
@@ -121,7 +128,7 @@ const AddShiurDialog = props => {
             margin="dense"
             label="Link"
             type="text"
-            placeholder="http(s)://www....."
+            placeholder="http(s)://www.example.com"
             fullWidth
             required
             value={shiur.link}
@@ -131,7 +138,7 @@ const AddShiurDialog = props => {
             margin="dense"
             label="Sources Link"
             type="text"
-            placeholder="http(s)://www....."
+            placeholder="http(s)://www.example.com"
             fullWidth
             value={shiur.source}
             onChange={handleChange('source')}
@@ -177,8 +184,8 @@ const AddShiurDialog = props => {
               || shiur.lecturer == '' 
               || shiur.institution == '' 
               || shiur.link == ''
-              || !ValidURL(shiur.link)
-              || (shiur.source != '' && !ValidURL(shiur.source)))
+              || !ValidWithFix(shiur.link)
+              || (shiur.source != '' && !ValidWithFix(shiur.source)))
             }
           >
             Add
