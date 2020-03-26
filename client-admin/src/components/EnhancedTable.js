@@ -248,8 +248,7 @@ const EnhancedTable = ({
                     <TableCell {...cell.getCellProps()}>
                       {
                           (cell.column.id === 'date'
-
-                        ? moment(moment.utc((new Date((new Date(cell.value).toUTCString())).toLocaleString()))).local().format('M/DD/YYYY hh:mm A')
+                        ? moment.utc(cell.value).local().format('M/DD/YYYY hh:mm A')
                         : cell.column.id === 'link' || cell.column.id === 'sources' && cell.value != '' && cell.value !== undefined
                         ? <a href={FixURLIfNecessary(cell.value)}>Click here</a>
                         : cell.render('Cell'))

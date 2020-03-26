@@ -4,6 +4,7 @@ import EnhancedTable from './components/EnhancedTable';
 import Popup from 'react-popup';
 import './App.css';
 import logo from './communityshiur.png';
+import moment from 'moment';
 
 
 function App() {
@@ -108,9 +109,8 @@ function App() {
 
     }
 
-
     postShiur({
-      date: shiur.date.toISOString().slice(0, 19).replace('T', ' '),
+      date: moment(shiur.date).format('YYYY-MM-DD H:mm:ss'),
       title: shiur.title,
       lecturer: shiur.lecturer,
       institution: shiur.institution,
