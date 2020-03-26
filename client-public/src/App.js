@@ -23,6 +23,10 @@ function App() {
     .catch(err => setErrors(err));
   }
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const columns = React.useMemo(
     () => [
       {
